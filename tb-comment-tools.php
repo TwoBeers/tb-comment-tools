@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: tb-comment-tools
-Plugin URI:
-Description:
+Plugin Name: TB Comment Tools
+Plugin URI: https://github.com/TwoBeers/tb-comment-tools
+Description: The plugin will add some usefull links to the comment form. It adds a "quote" link besides the #reply-title and converts the allowed tags into clickable links that wrap the selected text in the comment form.
 Author: Jimo
-Version: 1.0
+Version: 1.1
 */
 
 class TB_Comment_Tools {
@@ -14,6 +14,14 @@ class TB_Comment_Tools {
 		add_action( 'comment_form_before', array( $this, 'script' ) );
 
 		add_filter( 'comment_form_defaults', array( $this, 'add_buttons' ) );
+
+		add_action( 'plugins_loaded', array( $this, 'l10n' ) );
+
+	}
+
+	function l10n() {
+
+		load_plugin_textdomain( 'tb_comment_tools', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	}
 
@@ -27,7 +35,7 @@ class TB_Comment_Tools {
 			'quote_alert'		=> esc_js( __( 'Nothing to quote. First of all you should select some text...', 'tb_comment_tools' ) ),
 		);
 
-		wp_localize_script( 'tb-comment-tools-script', 'tbCommentTools_L10', $data );
+		wp_localize_script( 'tb-comment-tools-script', 'tbCommentTools_l10n', $data );
 
 	}
 
@@ -58,8 +66,13 @@ class TB_Comment_Tools {
 			$allowed[] = '<a href="#" onclick="tbCommentTools.tag_this(\'' . $allowed_tag . '\',\'&lt;/' . $tag . '&gt;\'); return false" title="' . $allowed_tag . '">' . htmlentities( '<' . $tag . '>' ) . '</a>';
 
 		}
-		//' - <a id="tagthis" href="#" onclick="tbCommentTools.tag_this(); return false" title="' + tbCommentTools_L10.tag_tip + '" >' + tbCommentTools_L10.tag + '</a>'
-		return '<p id="tb-comment-tools-tags" class="form-allowed-tags hide-if-no-js" style="display:none;">Allowed tags: ' . implode( ' - ', $allowed ) . '</p>';
+
+		$separator = apply_filters( 'tb_comment_tools_separator', ' ' );
+
+		$label = apply_filters( 'tb_comment_tools_label', __( 'Allowed tags', 'tb_comment_tools' ) . ': ' );
+
+		//' - <a id="tagthis" href="#" onclick="tbCommentTools.tag_this(); return false" title="' + tbCommentTools_l10n.tag_tip + '" >' + tbCommentTools_l10n.tag + '</a>'
+		return '<p id="tb-comment-tools-tags" class="form-allowed-tags hide-if-no-js" style="display:none;">' . $label . implode( $separator, $allowed ) . '</p>';
 
 	}
 

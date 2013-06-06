@@ -23,11 +23,15 @@ Adds a "quote" link besides the `#reply-title` and converts the allowed tags int
 
 = Where can I find support for this plugin? =
 
-Here: [TwoBeers Project](http://www.twobeers.net/)
+Here: https://github.com/TwoBeers/tb-comment-tools
 
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1 =
+* add: localization.
+* add: filters for label and separator in "allowed tags" feature.
 
 = 1.0 =
 * first release.

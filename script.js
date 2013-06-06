@@ -31,7 +31,7 @@ var tbCommentTools = {
 		if ( document.getElementById('reply-title') && document.getElementById("comment") ) {
 			var reply_title = document.getElementById('reply-title');
 			var quote_div = document.createElement('small');
-			quote_div.innerHTML = ' - <a id="quotethis" href="#" onclick="tbCommentTools.quote_this(); return false" title="' + tbCommentTools_L10.quote_tip + '" >' + tbCommentTools_L10.quote + '</a>';
+			quote_div.innerHTML = ' - <a id="quotethis" href="#" onclick="tbCommentTools.quote_this(); return false" title="' + tbCommentTools_l10n.quote_tip + '" >' + tbCommentTools_l10n.quote + '</a>';
 			reply_title.appendChild(quote_div);
 		}
 	},
@@ -87,7 +87,7 @@ var tbCommentTools = {
 		if ( posttext.length !== 0 ) {
 			document.getElementById("comment").value = document.getElementById("comment").value + '<blockquote>' + posttext + '</blockquote>';
 		} else {
-			alert( tbCommentTools_L10.quote_alert );
+			alert( tbCommentTools_l10n.quote_alert );
 		}
 	}
 
