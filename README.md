@@ -29,7 +29,7 @@ Here: https://github.com/TwoBeers/tb-comment-tools
 
 ##Changelog
 
-##1.1
+###1.1
 * add: localization.  
 * add: filters for label and separator in "allowed tags" feature.
 

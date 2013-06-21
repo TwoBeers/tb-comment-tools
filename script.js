@@ -43,7 +43,7 @@ var tbCommentTools = {
 	},
 
 
-	tag_this : function( tag_in, tag_out ='culo' ) {
+	tag_this : function( tag_in, tag_out ) {
 
 		var textarea = document.getElementById("comment");
 
